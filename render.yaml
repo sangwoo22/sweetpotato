@@ -4,6 +4,6 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn -w 2 -b 0.0.0.0:10000 240214tax
+    startCommand: gunicorn -w 2 -b 0.0.0.0:10000 240214tax:app
     # Replace `myapp:app` with the path to your Flask application
     # For example, if your Flask app is in `app.py` and the Flask instance is named `app`, use `app:app`
