@@ -1,6 +1,8 @@
 Flask>=2.0,<3.0
 # Add other dependencies here
 
-gunicorn==20.2.2
+gunicorn>=20.0.0,<21.0.0
+pip install --upgrade pip
+
 psycopg2==2.9.3
 Pillow==9.4.0
