@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            background-color: black; /* Set the background color to black */
+            color: white;
+            font-size: 24px; /* Adjust the font size as needed */
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            width: 90%;
+            height: 200px; /* Set the height to 200px */
+            margin-bottom: 0; /* Remove margin bottom */
+        }
+        .button {
+            width: 100%; /* Make the buttons as wide as the container */
+            padding: 0 10px; /* Remove top and bottom padding */
+            height: 90px; /* Set the height to make the buttons three times taller */
+            margin-top: 10px;
+            margin-bottom: 0; /* Remove margin bottom */
+            font-size: 24px; /* Increase the font size */
+        }
+        .retry-button {
+            margin-top: 10px; /* Adjust margin top */
+            width: 100%; /* Make the button as wide as the container */
+            height: 90px; /* Set the height to make the button the same height as the other buttons */
+            font-size: 24px; /* Increase the font size */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Time: <span id="timer">00:00</span></p>
+        <script>
+            var timerElement = document.getElementById('timer');
+            var startTime = new Date().getTime();
+
+            function updateTimer() {
+                var currentTime = new Date().getTime();
+                var elapsedTime = Math.floor((currentTime - startTime) / 1000);
+                var minutes = Math.floor(elapsedTime / 60);
+                var seconds = elapsedTime % 60;
+                timerElement.innerText = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+            }
+
+            setInterval(updateTimer, 1000);
+        </script>
+
+        <p>Question {{ current_question }} / {{ total_questions }}</p>
+        <div class="question">{{ question }}</div>
+        <div class="feedback">{{ feedback }}</div>
+        <form method="POST" action="{{ url_for('quiz_or_retry') }}">
+            <div class="button-container">
+                {% if show_yes_no_buttons %}
+                    <button class="button" type="submit" name="answer" value="yes">Yes</button>
+                    <button class="button" type="submit" name="answer" value="no">No</button>
+                {% else %}
+                    <button class="retry-button" type="submit" name="retry">Retry</button>
+                {% endif %}
+            </div>                    
+        </form>
+    </div>
+</body>
+</html>
