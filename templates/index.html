@@ -9,42 +9,63 @@
             background-color: black; /* Set the background color to black */
             color: white;
             font-size: 24px; /* Adjust the font size as needed */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Make the body take full viewport height */
+        }
+        .ads-container {
+            text-align: center;
+            padding: 10px;
+            background-color: #f0f0f0; /* Light background for the ad container */
+            border-bottom: 2px solid #ccc; /* Border for better visibility */
         }
         .container {
             text-align: center;
             padding: 20px;
+            flex: 1; /* Allow container to grow and fill available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
         }
         .question {
             margin-bottom: 20px;
         }
         .button-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            bottom: 0;
-            width: 90%;
-            height: 200px; /* Set the height to 200px */
-            margin-bottom: 0; /* Remove margin bottom */
+            justify-content: center; /* Center the buttons horizontally */
+            gap: 10px; /* Space between the buttons */
         }
         .button {
-            width: 100%; /* Make the buttons as wide as the container */
-            padding: 0 10px; /* Remove top and bottom padding */
-            height: 90px; /* Set the height to make the buttons three times taller */
-            margin-top: 10px;
-            margin-bottom: 0; /* Remove margin bottom */
+            width: 100px; /* Fixed width for buttons */
+            padding: 10px; /* Padding inside the buttons */
+            height: 90px; /* Fixed height for buttons */
             font-size: 24px; /* Increase the font size */
         }
         .retry-button {
-            margin-top: 10px; /* Adjust margin top */
-            width: 100%; /* Make the button as wide as the container */
+            width: 100%; /* Make the retry button as wide as the container */
             height: 90px; /* Set the height to make the button the same height as the other buttons */
             font-size: 24px; /* Increase the font size */
         }
-
     </style>
 </head>
 <body>
+    <!-- Google AdSense Banner -->
+    <div class="ads-container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4619424414372862"
+                crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4619424414372862"
+             data-ad-slot="8130802382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <div class="container">
         <p>Time: <span id="timer">00:00</span></p>
         <script>
@@ -55,7 +76,7 @@
                 var currentTime = new Date().getTime();
                 var elapsedTime = Math.floor((currentTime - startTime) / 1000);
                 var minutes = Math.floor(elapsedTime / 60);
-                var seconds = elapsedTime % 60;
+                                var seconds = elapsedTime % 60;
                 timerElement.innerText = ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
             }
 
@@ -78,3 +99,4 @@
     </div>
 </body>
 </html>
+
